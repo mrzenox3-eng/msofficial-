@@ -1,0 +1,705 @@
+{
+  "users": [
+    {
+      "id": "0c884881-5531-422d-bf21-0b287cfc4b76",
+      "name": "Uk",
+      "email": "myuk5577@gmail.com",
+      "phone": "03224299326",
+      "role": "user",
+      "status": "active",
+      "referralCode": "MS-74A7C9",
+      "referredBy": null,
+      "createdAt": "2026-10-24T08:08:55.402Z",
+      "lastLoginAt": "2026-10-24T09:03:26.017Z"
+    }
+  ],
+  "userCredentials": [
+    {
+      "userId": "0c884881-5531-422d-bf21-0b287cfc4b76",
+      "passwordHash": "ff664f40e0e90a4338db0a58b79f3816f15e488e896b328fbc31e0d270ace1bd8731d0169b85a8af585132920620dfbe021fe534b48e02283f24d316559c72a5",
+      "salt": "070aebc1fb80ccf2ca37276d9558d755",
+      "isGoogleAuth": false
+    }
+  ],
+  "adminCredentials": [
+    {
+      "id": "admin_master_1",
+      "email": "admin@msofficial.com",
+      "name": "Master Administrator",
+      "passwordHash": "775a18adb1e989224e04e7984c82f19bba631127d5cc4d9f1bd14a9208b382a3f33ac5afa2ee106e0365d54e4afb7880295499a65499fa2457a296e071604cee",
+      "salt": "69c4cce8f9a7f76f9e369af45b6ec6c7",
+      "twoFactorEnabled": false,
+      "status": "active"
+    },
+    {
+      "id": "admin_master_gmail",
+      "email": "admin@gmail.com",
+      "name": "Admin Console",
+      "passwordHash": "35ecd90b6e0b61214e91b17c229bee9b076bd04d7c6dfc85b12377574e6474ff57e92f0c521a64ff795c93f3e5e09294df33d8556a1ee12b0478175f720db9f5",
+      "salt": "e66a7195576b62bb5b9ffd732c678e12",
+      "twoFactorEnabled": false,
+      "status": "active"
+    },
+    {
+      "id": "admin_developer",
+      "email": "developeralihusnain@gmail.com",
+      "name": "Developer Admin",
+      "passwordHash": "5aef7241185d4e79a66a3b3dd37f8f37afe50f0ba5ef9cce7dc2c03da91e76d16c1662ad9b2abc9b002ad99479ddcd275787e9916c2fc7cfd4f747315ce28661",
+      "salt": "cd1bdd5d7669ec22eb83a8b72590767f",
+      "twoFactorEnabled": false,
+      "status": "active"
+    }
+  ],
+  "packages": [
+    {
+      "id": "weekly",
+      "name": "One Week",
+      "price": 500,
+      "durationDays": 7,
+      "inviteLimit": 5,
+      "screenshotLimit": 5,
+      "bonusPercentage": 10,
+      "description": "One-week check-in access, 5 daily invites, 10% referral bonus"
+    },
+    {
+      "id": "monthly",
+      "name": "One Month",
+      "price": 1000,
+      "durationDays": 30,
+      "inviteLimit": 10,
+      "screenshotLimit": 10,
+      "bonusPercentage": 20,
+      "description": "One-month check-in access, 10 daily invites, 20% referral bonus"
+    }
+  ],
+  "userPackages": [
+    {
+      "id": "9e725c0b-0be8-457a-9445-d0cc46ff691e",
+      "userId": "0c884881-5531-422d-bf21-0b287cfc4b76",
+      "packageId": "monthly",
+      "packageName": "One Month",
+      "price": 1000,
+      "startDate": "2026-10-24T09:05:15.100Z",
+      "expiryDate": "2026-11-23T09:05:15.100Z",
+      "status": "active",
+      "paymentMethod": "JazzCash",
+      "senderAccountName": "Administrator Override",
+      "senderPhone": "03224299326",
+      "transactionProofUrl": "",
+      "createdAt": "2026-10-24T09:05:15.100Z",
+      "approvedAt": "2026-10-24T09:05:15.100Z",
+      "approvedBy": "Administrator"
+    }
+  ],
+  "attendance": [
+    {
+      "id": "c57bf608-98a8-4828-935f-f108d2828c20",
+      "userId": "0c884881-5531-422d-bf21-0b287cfc4b76",
+      "date": "2026-10-24",
+      "checkInTime": "09:14 AM",
+      "checkOutTime": "09:14 AM",
+      "status": "checked_out",
+      "updatedAt": "2026-10-24T09:14:45.240Z"
+    }
+  ],
+  "referrals": [],
+  "screenshots": [],
+  "wallets": {
+    "0c884881-5531-422d-bf21-0b287cfc4b76": {
+      "userId": "0c884881-5531-422d-bf21-0b287cfc4b76",
+      "availableBalance": 5,
+      "pendingBalance": 0,
+      "totalEarned": 5,
+      "updatedAt": "2026-10-24T09:14:41.954Z"
+    }
+  },
+  "walletTransactions": [
+    {
+      "id": "TX-MVM6N9UQ-542",
+      "userId": "0c884881-5531-422d-bf21-0b287cfc4b76",
+      "amount": 5,
+      "type": "credit",
+      "reason": "Daily Attendance Reward",
+      "adminName": null,
+      "createdAt": "2026-10-24T09:14:41.954Z"
+    }
+  ],
+  "withdrawals": [],
+  "supportMessages": [],
+  "adminAuditLogs": [
+    {
+      "id": "LOG-MVT65IGI-480",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-29T06:35:16.530Z"
+    },
+    {
+      "id": "LOG-MVT64WKJ-929",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-29T06:34:48.163Z"
+    },
+    {
+      "id": "LOG-MVM6Q99M-157",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_CLEAR_USER_SUPPORT_CHAT",
+      "targetUser": "guest_80cf1b9a",
+      "details": "Admin cleared 2 support helpdesk chat messages for user User (guest_80)",
+      "timestamp": "2026-10-24T09:17:01.162Z"
+    },
+    {
+      "id": "LOG-MVM6Q98Y-683",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_CLEAR_USER_SUPPORT_CHAT",
+      "targetUser": "guest_b95beefd",
+      "details": "Admin cleared 2 support helpdesk chat messages for user User (guest_b9)",
+      "timestamp": "2026-10-24T09:17:01.138Z"
+    },
+    {
+      "id": "LOG-MVM6Q989-435",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_CLEAR_USER_SUPPORT_CHAT",
+      "targetUser": "guest_5f61bd7f",
+      "details": "Admin cleared 2 support helpdesk chat messages for user User (guest_5f)",
+      "timestamp": "2026-10-24T09:17:01.113Z"
+    },
+    {
+      "id": "LOG-MVM6H7LI-48",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-24T09:09:59.094Z"
+    },
+    {
+      "id": "LOG-MVM6FAS0-648",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-24T09:08:29.904Z"
+    },
+    {
+      "id": "LOG-MVM6EX2I-762",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_CLEAR_ALL_SUPPORT_CHATS",
+      "targetUser": null,
+      "details": "Admin purged entire helpdesk chat archive (1 messages deleted)",
+      "timestamp": "2026-10-24T09:08:12.138Z"
+    },
+    {
+      "id": "LOG-MVM6EHBF-850",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-24T09:07:51.723Z"
+    },
+    {
+      "id": "LOG-MVM6BAMG-554",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_CLEAR_USER_SUPPORT_CHAT",
+      "targetUser": "guest_test_123",
+      "details": "Admin cleared 1 support helpdesk chat messages for user User (guest_te)",
+      "timestamp": "2026-10-24T09:05:23.080Z"
+    },
+    {
+      "id": "LOG-MVM6B4GS-585",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_PACKAGE_ACTIVATION",
+      "targetUser": "0c884881-5531-422d-bf21-0b287cfc4b76",
+      "details": "Directly activated One Month (30 days) for member Uk (myuk5577@gmail.com / 03224299326)",
+      "timestamp": "2026-10-24T09:05:15.101Z"
+    },
+    {
+      "id": "LOG-MVM6AVSB-365",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_DELETE_USER_ACCOUNT",
+      "targetUser": "296a8bef-6273-4802-ab08-7cfb2bfd6cbc",
+      "details": "Admin permanently deleted account for user Ali Husnain (developeralihusnain@gmail.com)",
+      "timestamp": "2026-10-24T09:05:03.851Z"
+    },
+    {
+      "id": "LOG-MVM6ACTO-435",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-24T09:04:39.276Z"
+    },
+    {
+      "id": "LOG-MVM4FITI-645",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-24T08:12:41.094Z"
+    },
+    {
+      "id": "LOG-MVL1S3W5-760",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_DELETE_SUPPORT_MESSAGE",
+      "targetUser": null,
+      "details": "Admin deleted single helpdesk message ID: 32e138a7-1e3b-4a0b-a86a-5ce6f07d3d7b",
+      "timestamp": "2026-10-23T14:10:43.253Z"
+    },
+    {
+      "id": "LOG-MVL1S0HT-8",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_CLEAR_USER_SUPPORT_CHAT",
+      "targetUser": "296a8bef-6273-4802-ab08-7cfb2bfd6cbc",
+      "details": "Admin cleared 3 support helpdesk chat messages for user Ali Husnain",
+      "timestamp": "2026-10-23T14:10:38.849Z"
+    },
+    {
+      "id": "LOG-MVL1S0GG-370",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-23T14:10:38.800Z"
+    },
+    {
+      "id": "LOG-MVKUXC7K-206",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_DELETE_USER_ACCOUNT",
+      "targetUser": "0fb1c73e-1517-4509-acb1-5c4264d3338b",
+      "details": "Admin permanently deleted account for user Secure User (secureuser@gmail.com)",
+      "timestamp": "2026-10-23T10:58:50.000Z"
+    },
+    {
+      "id": "LOG-MVKUXC6X-864",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-23T10:58:49.977Z"
+    },
+    {
+      "id": "LOG-MVKTQYND-989",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_DELETE_USER_ACCOUNT",
+      "targetUser": "8f7f4886-3920-4854-962a-e4b62b334c80",
+      "details": "Admin permanently deleted account for user Test User (testuser99@gmail.com)",
+      "timestamp": "2026-10-23T10:25:52.873Z"
+    },
+    {
+      "id": "LOG-MVKTQYLO-673",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_CHANGE_USER_PASSWORD",
+      "targetUser": "8f7f4886-3920-4854-962a-e4b62b334c80",
+      "details": "Admin changed password for user Test User (testuser99@gmail.com)",
+      "timestamp": "2026-10-23T10:25:52.812Z"
+    },
+    {
+      "id": "LOG-MVKTQYL4-850",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-23T10:25:52.792Z"
+    },
+    {
+      "id": "LOG-MVB127D7-303",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_PACKAGE_ACTIVATION",
+      "targetUser": "296a8bef-6273-4802-ab08-7cfb2bfd6cbc",
+      "details": "Directly activated One Month (30 days) for member Ali Husnain (developeralihusnain@gmail.com / 03054093809)",
+      "timestamp": "2026-10-16T13:52:52.939Z"
+    },
+    {
+      "id": "LOG-MVB11Z9Y-167",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-16T13:52:42.454Z"
+    },
+    {
+      "id": "LOG-MV5A5YAZ-56",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-12T13:21:07.307Z"
+    },
+    {
+      "id": "LOG-MV58DVFY-580",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-12T12:31:17.614Z"
+    },
+    {
+      "id": "LOG-MV587IHN-258",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-12T12:26:20.891Z"
+    },
+    {
+      "id": "LOG-MV57V3UA-895",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-12T12:16:42.034Z"
+    },
+    {
+      "id": "LOG-MUZLOTP5-921",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "UPDATE_DOMAIN_SETTINGS",
+      "targetUser": null,
+      "details": "Updated system domain configuration to: ais-pre-w3jyztby6skrlvoibagcqo-813832143668.asia-southeast1.run.app",
+      "timestamp": "2026-10-08T13:57:06.522Z"
+    },
+    {
+      "id": "LOG-MUZLNNJ4-181",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-08T13:56:11.872Z"
+    },
+    {
+      "id": "LOG-MUZLMYKF-967",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "UPDATE_DOMAIN_SETTINGS",
+      "targetUser": null,
+      "details": "Updated system domain configuration to: msofficial.kesug.com",
+      "timestamp": "2026-10-08T13:55:39.519Z"
+    },
+    {
+      "id": "LOG-MUZLLP07-201",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-08T13:54:40.472Z"
+    },
+    {
+      "id": "LOG-MUZLJ77H-147",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-08T13:52:44.093Z"
+    },
+    {
+      "id": "LOG-MUY1Y6ZM-193",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-07T11:56:45.155Z"
+    },
+    {
+      "id": "LOG-MUV83FFV-264",
+      "adminId": "admin_master_gmail",
+      "adminName": "Admin Console",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Admin Console successfully accessed console",
+      "timestamp": "2026-10-05T12:25:28.555Z"
+    },
+    {
+      "id": "LOG-MUV83FFO-84",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator Master Administrator successfully accessed console",
+      "timestamp": "2026-10-05T12:25:28.548Z"
+    },
+    {
+      "id": "LOG-MUV83FFI-508",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "FAILED_2FA",
+      "targetUser": null,
+      "details": "Failed 2FA code attempt for admin@msofficial.com",
+      "timestamp": "2026-10-05T12:25:28.542Z"
+    },
+    {
+      "id": "LOG-MUV83FFA-65",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "FAILED_LOGIN",
+      "targetUser": null,
+      "details": "Failed administrator login attempt for admin@msofficial.com",
+      "timestamp": "2026-10-05T12:25:28.534Z"
+    },
+    {
+      "id": "LOG-MUV831P7-239",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator logged into management console",
+      "timestamp": "2026-10-05T12:25:10.747Z"
+    },
+    {
+      "id": "LOG-MUV831P0-77",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator logged into management console",
+      "timestamp": "2026-10-05T12:25:10.740Z"
+    },
+    {
+      "id": "LOG-MUV831OS-686",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "FAILED_LOGIN",
+      "targetUser": null,
+      "details": "Failed login attempt for admin@msofficial.com",
+      "timestamp": "2026-10-05T12:25:10.732Z"
+    },
+    {
+      "id": "LOG-MUV7NLY8-547",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_LOGOUT",
+      "targetUser": null,
+      "details": "Administrator logged out",
+      "timestamp": "2026-10-05T12:13:10.496Z"
+    },
+    {
+      "id": "LOG-MUV65YD1-212",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator logged into management console",
+      "timestamp": "2026-10-05T11:31:27.157Z"
+    },
+    {
+      "id": "LOG-MUV65PER-98",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_LOGOUT",
+      "targetUser": null,
+      "details": "Administrator logged out",
+      "timestamp": "2026-10-05T11:31:15.555Z"
+    },
+    {
+      "id": "LOG-MUV45WQP-494",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_PACKAGE_DEACTIVATION",
+      "targetUser": "296a8bef-6273-4802-ab08-7cfb2bfd6cbc",
+      "details": "Deactivated active package for member Ali Husnain (developeralihusnain@gmail.com)",
+      "timestamp": "2026-10-05T10:35:25.825Z"
+    },
+    {
+      "id": "LOG-MUV45WQ6-865",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_PACKAGE_ACTIVATION",
+      "targetUser": "296a8bef-6273-4802-ab08-7cfb2bfd6cbc",
+      "details": "Directly activated One Month (30 days) for member Ali Husnain (developeralihusnain@gmail.com / 03054093809)",
+      "timestamp": "2026-10-05T10:35:25.806Z"
+    },
+    {
+      "id": "LOG-MUV45WOS-709",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator logged into management console",
+      "timestamp": "2026-10-05T10:35:25.756Z"
+    },
+    {
+      "id": "LOG-MUV3VLYT-561",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_PACKAGE_DEACTIVATION",
+      "targetUser": "296a8bef-6273-4802-ab08-7cfb2bfd6cbc",
+      "details": "Deactivated active package for Ali Husnain",
+      "timestamp": "2026-10-05T10:27:25.301Z"
+    },
+    {
+      "id": "LOG-MUV3UZAP-199",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator logged into management console",
+      "timestamp": "2026-10-05T10:26:55.921Z"
+    },
+    {
+      "id": "LOG-MUV3QFO9-653",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_PACKAGE_DEACTIVATION",
+      "targetUser": "296a8bef-6273-4802-ab08-7cfb2bfd6cbc",
+      "details": "Deactivated active package for Ali Husnain",
+      "timestamp": "2026-10-05T10:23:23.865Z"
+    },
+    {
+      "id": "LOG-MUV3P9UU-974",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator logged into management console",
+      "timestamp": "2026-10-05T10:22:29.670Z"
+    },
+    {
+      "id": "LOG-MUV3ND30-973",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator logged into management console",
+      "timestamp": "2026-10-05T10:21:00.540Z"
+    },
+    {
+      "id": "LOG-MUUSTKPF-879",
+      "adminId": "admin_master_1",
+      "adminName": "Master Administrator",
+      "action": "ADMIN_LOGIN",
+      "targetUser": null,
+      "details": "Administrator logged into management console",
+      "timestamp": "2026-10-05T05:17:54.579Z"
+    },
+    {
+      "id": "LOG-MVT66ASI-210",
+      "adminId": "admin_master_1",
+      "adminName": "Administrator",
+      "action": "ADMIN_CLEAR_USER_SUPPORT_CHAT",
+      "targetUser": "0c884881-5531-422d-bf21-0b287cfc4b76",
+      "details": "Admin cleared 0 support helpdesk chat messages for user Uk",
+      "timestamp": "2026-10-29T06:35:53.250Z"
+    }
+  ],
+  "paymentSettings": {
+    "jazzCash": {
+      "accountName": "MS Official Finance",
+      "accountNumber": "0301-2345678",
+      "qrCode": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20width%3D%22200%22%20height%3D%22200%22%3E%0A%20%20%20%20%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23090d16%22%20rx%3D%2216%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2220%22%20width%3D%2250%22%20height%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%2310b981%22%20stroke-width%3D%228%22%20rx%3D%228%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2235%22%20y%3D%2235%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22%2310b981%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22130%22%20y%3D%2220%22%20width%3D%2250%22%20height%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%2310b981%22%20stroke-width%3D%228%22%20rx%3D%228%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22145%22%20y%3D%2235%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22%2310b981%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%22130%22%20width%3D%2250%22%20height%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%2310b981%22%20stroke-width%3D%228%22%20rx%3D%228%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2235%22%20y%3D%22145%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22%2310b981%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2285%22%20y%3D%2230%22%20width%3D%2212%22%20height%3D%2212%22%20fill%3D%22%2334d399%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22105%22%20y%3D%2245%22%20width%3D%2212%22%20height%3D%2225%22%20fill%3D%22%2334d399%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2285%22%20y%3D%2285%22%20width%3D%2230%22%20height%3D%2230%22%20fill%3D%22%2310b981%22%20rx%3D%224%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22130%22%20y%3D%22100%22%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22%2334d399%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22155%22%20y%3D%22125%22%20width%3D%2225%22%20height%3D%2215%22%20fill%3D%22%2334d399%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2290%22%20y%3D%22140%22%20width%3D%2220%22%20height%3D%2235%22%20fill%3D%22%2334d399%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22130%22%20y%3D%22155%22%20width%3D%2240%22%20height%3D%2220%22%20fill%3D%22%2334d399%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22100%22%20y%3D%22190%22%20fill%3D%22%236ee7b7%22%20font-size%3D%2210%22%20font-family%3D%22sans-serif%22%20text-anchor%3D%22middle%22%3EJAZZCASH%20OFFICIAL%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "instructions": "Send exact package fee to the JazzCash account above, take a screenshot of your successful transaction receipt, and upload it."
+    },
+    "easypaisa": {
+      "accountName": "MS Official Treasury",
+      "accountNumber": "0345-9876543",
+      "qrCode": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20width%3D%22200%22%20height%3D%22200%22%3E%0A%20%20%20%20%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23090d16%22%20rx%3D%2216%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%2220%22%20width%3D%2250%22%20height%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%2310b981%22%20stroke-width%3D%228%22%20rx%3D%228%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2235%22%20y%3D%2235%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22%2310b981%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22130%22%20y%3D%2220%22%20width%3D%2250%22%20height%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%2310b981%22%20stroke-width%3D%228%22%20rx%3D%228%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22145%22%20y%3D%2235%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22%2310b981%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2220%22%20y%3D%22130%22%20width%3D%2250%22%20height%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%2310b981%22%20stroke-width%3D%228%22%20rx%3D%228%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2235%22%20y%3D%22145%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22%2310b981%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2285%22%20y%3D%2230%22%20width%3D%2212%22%20height%3D%2212%22%20fill%3D%22%2334d399%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22105%22%20y%3D%2245%22%20width%3D%2212%22%20height%3D%2225%22%20fill%3D%22%2334d399%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2285%22%20y%3D%2285%22%20width%3D%2230%22%20height%3D%2230%22%20fill%3D%22%2310b981%22%20rx%3D%224%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22130%22%20y%3D%22100%22%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22%2334d399%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22155%22%20y%3D%22125%22%20width%3D%2225%22%20height%3D%2215%22%20fill%3D%22%2334d399%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2290%22%20y%3D%22140%22%20width%3D%2220%22%20height%3D%2235%22%20fill%3D%22%2334d399%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22130%22%20y%3D%22155%22%20width%3D%2240%22%20height%3D%2220%22%20fill%3D%22%2334d399%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22100%22%20y%3D%22190%22%20fill%3D%22%236ee7b7%22%20font-size%3D%2210%22%20font-family%3D%22sans-serif%22%20text-anchor%3D%22middle%22%3EEASYPAISA%20OFFICIAL%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "instructions": "Send exact package fee to the Easypaisa account above, take a screenshot of your successful transaction receipt, and upload it."
+    }
+  },
+  "packageSettings": {
+    "weekly": {
+      "price": 500,
+      "inviteLimit": 5,
+      "screenshotLimit": 5,
+      "bonusPercentage": 10
+    },
+    "monthly": {
+      "price": 1000,
+      "inviteLimit": 10,
+      "screenshotLimit": 10,
+      "bonusPercentage": 20
+    }
+  },
+  "dailyUsage": [
+    {
+      "userId": "0c884881-5531-422d-bf21-0b287cfc4b76",
+      "date": "2026-10-24",
+      "invitesCount": 10,
+      "screenshotsCount": 0
+    }
+  ],
+  "sessions": [
+    {
+      "token": "12b074bec23d669ac7117170ca71a4dec5079a29490c7855ac09145a679f651e",
+      "userId": "0c884881-5531-422d-bf21-0b287cfc4b76",
+      "role": "user",
+      "createdAt": 1792829335403,
+      "expiresAt": 1793434135403
+    },
+    {
+      "token": "6716840771b20ed7770c4b2e85fbf20a7ccf7a4bc2e1ae9e90cd25cb5a5afa9b",
+      "userId": "0c884881-5531-422d-bf21-0b287cfc4b76",
+      "role": "user",
+      "createdAt": 1792832606018,
+      "expiresAt": 1793437406018
+    },
+    {
+      "token": "cccb7054ae490bf384d1ae70fccf708cab837cebdeb43c5fd6a5b29ec6dbc8fb",
+      "userId": "admin_master_1",
+      "role": "admin",
+      "createdAt": 1793255688163,
+      "expiresAt": 1793342088163
+    },
+    {
+      "token": "310311763064fc7317b3eb5755cd1216f8b6f5fecc3d91418c9dadbaa420ed6a",
+      "userId": "admin_master_1",
+      "role": "admin",
+      "createdAt": 1793255716529,
+      "expiresAt": 1793342116529
+    }
+  ],
+  "domainSettings": {
+    "customDomain": "786msofficial.com",
+    "useHttps": true,
+    "subdomainAdmin": "admin",
+    "subdomainApp": "app",
+    "nameservers": [
+      "ns71.cloudns.net",
+      "ns72.cloudns.net",
+      "ns73.cloudns.net",
+      "ns74.cloudns.net"
+    ],
+    "verificationRecords": [
+      {
+        "id": "aster_verify_txt",
+        "type": "TXT",
+        "host": "_aster-verify",
+        "value": "aster-verify=Q/MF37XXjZZduH/0BCx/1vf9cevyq+YVUH9aD23uBek=",
+        "service": "Aster Domain Verification",
+        "createdAt": "2026-10-16T13:53:03.263Z"
+      }
+    ]
+  }
+}
