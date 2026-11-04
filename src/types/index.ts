@@ -246,3 +246,43 @@ export interface UserFullDossier {
     completedAttendanceDays: number;
   };
 }
+
+export interface WalletAmountMemoryItem {
+  id: string;
+  type: 'credit' | 'debit';
+  amount: number;
+  reason: string;
+  timestamp: string;
+  category: 'attendance' | 'referral' | 'withdrawal' | 'ledger';
+}
+
+export interface WalletAmountMemoriesResponse {
+  storageStatus: {
+    isPersistent: boolean;
+    storageEngine: string;
+    firestoreDatabaseId: string;
+    totalRecordsArchived: number;
+    lastSyncTimestamp: string;
+  };
+  walletAmountMemories: {
+    availableBalance: number;
+    pendingBalance: number;
+    totalEarnedLifetime: number;
+    attendanceRewards: {
+      totalAmount: number;
+      streakDays: number;
+    };
+    referralCommissions: {
+      totalAmount: number;
+      payoutsCount: number;
+    };
+    withdrawals: {
+      totalDisbursed: number;
+      successfulCount: number;
+      pendingAmount: number;
+      pendingCount: number;
+    };
+    memoriesTimeline: WalletAmountMemoryItem[];
+  };
+}
+

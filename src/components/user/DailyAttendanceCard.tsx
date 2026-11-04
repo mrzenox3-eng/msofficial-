@@ -302,10 +302,15 @@ export const DailyAttendanceCard: React.FC = () => {
         <button
           onClick={handleCheckIn}
           disabled={!canCheckIn || actionLoading !== null}
-          className="min-h-[48px] py-3 px-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-400 hover:from-emerald-400 hover:to-teal-300 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:bg-slate-800 text-slate-950 font-black rounded-2xl text-xs sm:text-sm tracking-wide transition-all shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-pointer"
+          className="group relative overflow-hidden min-h-[50px] py-3 px-4 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-400 hover:from-emerald-400 hover:to-teal-300 active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed disabled:bg-slate-800 text-slate-950 font-black rounded-2xl text-xs sm:text-sm tracking-wide transition-all shadow-xl shadow-emerald-500/30 ring-2 ring-emerald-400/50 hover:ring-emerald-300 flex items-center justify-center gap-2 cursor-pointer select-none"
         >
-          {!isAttendanceUnlocked ? <Lock className="w-4 h-4 text-slate-950" /> : <LogIn className="w-4 h-4 stroke-[2.5]" />}
-          <span>
+          <span className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/35 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-in-out pointer-events-none" />
+          {!isAttendanceUnlocked ? (
+            <Lock className="w-4 h-4 text-slate-950 relative z-10" />
+          ) : (
+            <LogIn className="w-4 h-4 stroke-[2.5] relative z-10 transition-transform duration-200 group-hover:scale-110" />
+          )}
+          <span className="relative z-10 font-black">
             {actionLoading === 'in'
               ? 'Checking In...'
               : !isAttendanceUnlocked
@@ -319,10 +324,15 @@ export const DailyAttendanceCard: React.FC = () => {
         <button
           onClick={handleCheckOut}
           disabled={!canCheckOut || actionLoading !== null}
-          className="min-h-[48px] py-3 px-4 bg-gradient-to-r from-slate-800 to-slate-700 hover:from-slate-700 hover:to-slate-600 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed text-slate-200 hover:text-white font-bold rounded-2xl text-xs sm:text-sm tracking-wide transition-all border border-slate-700 shadow-md flex items-center justify-center gap-2 cursor-pointer"
+          className="group relative overflow-hidden min-h-[50px] py-3 px-4 bg-gradient-to-r from-slate-800 to-slate-700 hover:from-slate-700 hover:to-slate-600 active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed text-slate-200 hover:text-white font-bold rounded-2xl text-xs sm:text-sm tracking-wide transition-all border border-slate-700 shadow-md flex items-center justify-center gap-2 cursor-pointer select-none"
         >
-          {!isAttendanceUnlocked ? <Lock className="w-4 h-4 text-slate-400" /> : <LogOut className="w-4 h-4 text-amber-400" />}
-          <span>
+          <span className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-in-out pointer-events-none" />
+          {!isAttendanceUnlocked ? (
+            <Lock className="w-4 h-4 text-slate-400 relative z-10" />
+          ) : (
+            <LogOut className="w-4 h-4 text-amber-400 relative z-10 transition-transform duration-200 group-hover:-translate-x-0.5" />
+          )}
+          <span className="relative z-10">
             {actionLoading === 'out'
               ? 'Checking Out...'
               : !isAttendanceUnlocked

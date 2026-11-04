@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Users collection
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId);
+    }
+
+    // User Packages
+    match /userPackages/{packageId} {
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || request.auth.token.role == 'admin');
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if isAuthenticated() && request.auth.token.role == 'admin';
+    }
+
+    // Daily Attendance
+    match /attendance/{attendanceId} {
+      allow read, write: if isAuthenticated() && (request.resource.data.userId == request.auth.uid || resource.data.userId == request.auth.uid);
+    }
+
+    // Wallets
+    match /wallets/{userId} {
+      allow read: if isOwner(userId) || (isAuthenticated() && request.auth.token.role == 'admin');
+      allow write: if isAuthenticated() && request.auth.token.role == 'admin';
+    }
+
+    // Wallet Transactions
+    match /walletTransactions/{txId} {
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || request.auth.token.role == 'admin');
+      allow write: if isAuthenticated() && request.auth.token.role == 'admin';
+    }
+
+    // Withdrawals
+    match /withdrawals/{withdrawalId} {
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || request.auth.token.role == 'admin');
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if isAuthenticated() && request.auth.token.role == 'admin';
+    }
+
+    // Support Messages
+    match /supportMessages/{messageId} {
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || request.auth.token.role == 'admin');
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAuthenticated() && request.auth.token.role == 'admin';
+    }
+  }
+}

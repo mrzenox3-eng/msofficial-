@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
+import fs from 'fs';
 import { apiRouter } from './server/api.js';
 
 dotenv.config();
@@ -38,6 +39,60 @@ async function startServer() {
 
   // Serve backend screenshot uploads statically
   app.use('/uploads', express.static(uploadsDir));
+
+  // Serve public assets directly (including backend.zip)
+  const publicDir = path.resolve(process.cwd(), 'public');
+  app.use(express.static(publicDir));
+
+  // Direct endpoint to download standalone backend zip file
+  app.get(['/backend.zip', '/api/download/backend', '/download/backend'], (_req, res) => {
+    const zipPath = path.join(publicDir, 'backend.zip');
+    if (fs.existsSync(zipPath)) {
+      res.setHeader('Content-Type', 'application/zip');
+      res.setHeader('Content-Disposition', 'attachment; filename="ms-official-backend.zip"');
+      return res.sendFile(zipPath);
+    }
+    return res.status(404).send('Backend zip file not found');
+  });
+
+  // Direct endpoint to download fullstack (frontend + backend) zip file for GitHub Pages
+  app.get(
+    [
+      '/fullstack.zip',
+      '/ms-official-fullstack-github-pages.zip',
+      '/api/download/fullstack',
+      '/download/fullstack',
+      '/api/download/github-pages'
+    ],
+    (_req, res) => {
+      const zipPath = path.join(publicDir, 'ms-official-fullstack-github-pages.zip');
+      if (fs.existsSync(zipPath)) {
+        res.setHeader('Content-Type', 'application/zip');
+        res.setHeader('Content-Disposition', 'attachment; filename="ms-official-fullstack-github-pages.zip"');
+        return res.sendFile(zipPath);
+      }
+      return res.status(404).send('Fullstack zip file not found');
+    }
+  );
+
+  // Direct endpoint to download frontend package (with all attached pages)
+  app.get(
+    [
+      '/frontend.zip',
+      '/ms-official-frontend-full-pages.zip',
+      '/api/download/frontend',
+      '/download/frontend'
+    ],
+    (_req, res) => {
+      const zipPath = path.join(publicDir, 'ms-official-frontend-full-pages.zip');
+      if (fs.existsSync(zipPath)) {
+        res.setHeader('Content-Type', 'application/zip');
+        res.setHeader('Content-Disposition', 'attachment; filename="ms-official-frontend-full-pages.zip"');
+        return res.sendFile(zipPath);
+      }
+      return res.status(404).send('Frontend zip file not found');
+    }
+  );
 
   // Domain Verification endpoints (Aster Mail, DNS TXT, web verification)
   const ASTER_VERIFY_PAYLOAD = 'aster-verify=Q/MF37XXjZZduH/0BCx/1vf9cevyq+YVUH9aD23uBek=';

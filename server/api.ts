@@ -16,6 +16,17 @@ import {
 
 export const apiRouter = Router();
 
+// Direct endpoint to download standalone backend zip package
+apiRouter.get(['/download/backend', '/download-backend'], (_req, res) => {
+  const zipPath = path.resolve(process.cwd(), 'public', 'backend.zip');
+  if (fs.existsSync(zipPath)) {
+    res.setHeader('Content-Type', 'application/zip');
+    res.setHeader('Content-Disposition', 'attachment; filename="ms-official-backend.zip"');
+    return res.sendFile(zipPath);
+  }
+  return res.status(404).json({ error: 'Backend zip file not found' });
+});
+
 const UPLOADS_DIR = path.resolve(process.cwd(), 'uploads');
 
 /**
@@ -1025,6 +1036,95 @@ apiRouter.get('/wallet/summary', requireUser, (req: AuthenticatedRequest, res: R
 apiRouter.get('/wallet/transactions', requireUser, (req: AuthenticatedRequest, res: Response) => {
   const transactions = db.getWalletTransactions(req.user!.id);
   res.json(transactions);
+});
+
+apiRouter.get('/wallet/amount-memories', requireUser, (req: AuthenticatedRequest, res: Response) => {
+  const userId = req.user!.id;
+  const wallet = db.getWallet(userId);
+  const transactions = db.getWalletTransactions(userId);
+  const withdrawals = db.getWithdrawalsForUser(userId);
+
+  let totalAttendanceRewards = 0;
+  let attendanceCount = 0;
+  let totalReferralCommissions = 0;
+  let referralBonusCount = 0;
+  let totalCredits = 0;
+  let totalDebits = 0;
+
+  for (const tx of transactions) {
+    if (tx.type === 'credit') {
+      totalCredits += tx.amount;
+      if (tx.reason.toLowerCase().includes('attendance')) {
+        totalAttendanceRewards += tx.amount;
+        attendanceCount++;
+      } else if (tx.reason.toLowerCase().includes('referral') || tx.reason.toLowerCase().includes('bonus')) {
+        totalReferralCommissions += tx.amount;
+        referralBonusCount++;
+      }
+    } else if (tx.type === 'debit') {
+      totalDebits += tx.amount;
+    }
+  }
+
+  let totalWithdrawnSuccessful = 0;
+  let totalWithdrawnPending = 0;
+  let successfulWithdrawalsCount = 0;
+  let pendingWithdrawalsCount = 0;
+
+  for (const w of withdrawals) {
+    if (w.status === 'successful') {
+      totalWithdrawnSuccessful += w.amount;
+      successfulWithdrawalsCount++;
+    } else if (w.status === 'pending') {
+      totalWithdrawnPending += w.amount;
+      pendingWithdrawalsCount++;
+    }
+  }
+
+  const memoriesList = transactions.slice(0, 50).map((t) => ({
+    id: t.id,
+    type: t.type,
+    amount: t.amount,
+    reason: t.reason,
+    timestamp: t.createdAt,
+    category: t.reason.toLowerCase().includes('attendance')
+      ? 'attendance'
+      : t.reason.toLowerCase().includes('referral')
+      ? 'referral'
+      : t.reason.toLowerCase().includes('withdrawal')
+      ? 'withdrawal'
+      : 'ledger'
+  }));
+
+  res.json({
+    storageStatus: {
+      isPersistent: true,
+      storageEngine: 'Cloud Firestore & Atomic JSON DB',
+      firestoreDatabaseId: 'ai-studio-msofficial-e3ea03c5-52b6-4d29-9e2a-ae174f7e3c72',
+      totalRecordsArchived: transactions.length + withdrawals.length,
+      lastSyncTimestamp: wallet.updatedAt || new Date().toISOString(),
+    },
+    walletAmountMemories: {
+      availableBalance: wallet.availableBalance,
+      pendingBalance: wallet.pendingBalance,
+      totalEarnedLifetime: wallet.totalEarned,
+      attendanceRewards: {
+        totalAmount: totalAttendanceRewards,
+        streakDays: attendanceCount,
+      },
+      referralCommissions: {
+        totalAmount: totalReferralCommissions,
+        payoutsCount: referralBonusCount,
+      },
+      withdrawals: {
+        totalDisbursed: totalWithdrawnSuccessful,
+        successfulCount: successfulWithdrawalsCount,
+        pendingAmount: totalWithdrawnPending,
+        pendingCount: pendingWithdrawalsCount,
+      },
+      memoriesTimeline: memoriesList,
+    }
+  });
 });
 
 apiRouter.get('/wallet/withdrawals', requireUser, (req: AuthenticatedRequest, res: Response) => {

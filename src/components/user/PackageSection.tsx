@@ -91,10 +91,11 @@ export const PackageSection: React.FC<PackageSectionProps> = ({ onOpenPage2 }) =
 
           <button
             onClick={() => packages && setSelectedOffer(packages.weekly)}
-            className="w-full min-h-[46px] py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 active:scale-[0.98] text-white font-bold rounded-2xl text-xs sm:text-sm tracking-wide transition-all shadow-lg shadow-blue-900/40 cursor-pointer flex items-center justify-center gap-2 border border-blue-400/30"
+            className="group relative overflow-hidden w-full min-h-[48px] py-3.5 px-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 hover:from-blue-500 hover:to-indigo-400 active:scale-[0.97] text-white font-bold rounded-2xl text-xs sm:text-sm tracking-wide transition-all shadow-lg shadow-blue-900/40 ring-2 ring-blue-400/40 hover:ring-blue-300 cursor-pointer flex items-center justify-center gap-2 select-none"
           >
-            <span>Activate One Week</span>
-            <ArrowRight className="w-4 h-4" />
+            <span className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-in-out pointer-events-none" />
+            <span className="relative z-10 font-bold">Activate One Week</span>
+            <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-200 group-hover:translate-x-1" />
           </button>
         </div>
 
@@ -103,19 +104,19 @@ export const PackageSection: React.FC<PackageSectionProps> = ({ onOpenPage2 }) =
           <div className="absolute top-0 right-0 w-36 h-36 bg-amber-500/15 rounded-full blur-2xl pointer-events-none" />
 
           {/* Best Value Badge */}
-          <div className="absolute top-0 right-0 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 text-slate-950 text-[10px] font-black uppercase tracking-wider py-1.5 px-3.5 rounded-bl-2xl shadow-lg flex items-center gap-1">
-            <Sparkles className="w-3 h-3" />
+          <div className="absolute top-0 right-0 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 text-slate-950 text-[10px] font-black uppercase tracking-wider py-1.5 px-3.5 rounded-bl-2xl shadow-lg flex items-center gap-1 animate-pulse-glow">
+            <Sparkles className="w-3 h-3 text-amber-950 animate-spin" style={{ animationDuration: '6s' }} />
             <span>Best Value · 2x Bonus</span>
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-black uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-                <span>👑</span>
+                <span className="inline-block animate-soft-float">👑</span>
                 <span>ONE MONTH PACKAGE</span>
               </span>
-              <div className="p-2 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/40">
-                <Crown className="w-4 h-4" />
+              <div className="p-2 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm shadow-amber-500/20">
+                <Crown className="w-4 h-4 text-amber-400" />
               </div>
             </div>
 
@@ -156,10 +157,11 @@ export const PackageSection: React.FC<PackageSectionProps> = ({ onOpenPage2 }) =
 
           <button
             onClick={() => packages && setSelectedOffer(packages.monthly)}
-            className="w-full min-h-[46px] py-3 px-4 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 active:scale-[0.98] text-slate-950 font-black rounded-2xl text-xs sm:text-sm tracking-wide transition-all shadow-xl shadow-amber-500/25 cursor-pointer flex items-center justify-center gap-2"
+            className="group relative overflow-hidden w-full min-h-[48px] py-3.5 px-4 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 active:scale-[0.97] text-slate-950 font-black rounded-2xl text-xs sm:text-sm tracking-wide transition-all shadow-xl shadow-amber-500/30 ring-2 ring-amber-400/60 hover:ring-amber-300 cursor-pointer flex items-center justify-center gap-2 select-none"
           >
-            <span>Activate One Month VIP</span>
-            <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+            <span className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-in-out pointer-events-none" />
+            <span className="relative z-10 font-black">Activate One Month VIP</span>
+            <ArrowRight className="w-4 h-4 stroke-[2.5] relative z-10 transition-transform duration-200 group-hover:translate-x-1" />
           </button>
         </div>
       </div>

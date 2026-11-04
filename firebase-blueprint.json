@@ -1,0 +1,149 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Registered member profile and access level",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "status": { "type": "string", "enum": ["active", "suspended"] },
+        "referralCode": { "type": "string" },
+        "referredBy": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "lastLoginAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "role", "status", "referralCode", "createdAt"]
+    },
+    "UserPackage": {
+      "title": "UserPackage",
+      "description": "Purchased subscription tier and activation record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "packageId": { "type": "string", "enum": ["weekly", "monthly"] },
+        "packageName": { "type": "string" },
+        "price": { "type": "number" },
+        "startDate": { "type": "string" },
+        "expiryDate": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "pending_verification", "expired", "rejected"] },
+        "paymentMethod": { "type": "string", "enum": ["JazzCash", "Easypaisa"] },
+        "senderAccountName": { "type": "string" },
+        "senderPhone": { "type": "string" },
+        "transactionProofUrl": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "packageId", "price", "status", "paymentMethod", "createdAt"]
+    },
+    "Attendance": {
+      "title": "Attendance",
+      "description": "Daily attendance check-in and reward status",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "date": { "type": "string" },
+        "checkInTime": { "type": "string" },
+        "checkOutTime": { "type": "string" },
+        "status": { "type": "string", "enum": ["not_checked_in", "checked_in", "checked_out"] },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "date", "status", "updatedAt"]
+    },
+    "Wallet": {
+      "title": "Wallet",
+      "description": "Member financial balances and earning totals",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "availableBalance": { "type": "number" },
+        "pendingBalance": { "type": "number" },
+        "totalEarned": { "type": "number" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "availableBalance", "pendingBalance", "totalEarned", "updatedAt"]
+    },
+    "WalletTransaction": {
+      "title": "WalletTransaction",
+      "description": "Financial ledger entry for reward or payout",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "amount": { "type": "number" },
+        "type": { "type": "string", "enum": ["credit", "debit"] },
+        "reason": { "type": "string" },
+        "adminName": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "amount", "type", "reason", "createdAt"]
+    },
+    "WithdrawalRecord": {
+      "title": "WithdrawalRecord",
+      "description": "Payout request and disbursement log",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "amount": { "type": "number" },
+        "method": { "type": "string", "enum": ["JazzCash", "Easypaisa"] },
+        "accountName": { "type": "string" },
+        "phone": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "successful", "rejected"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "amount", "method", "accountName", "phone", "status", "createdAt"]
+    },
+    "SupportMessage": {
+      "title": "SupportMessage",
+      "description": "Live support chat conversation message",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "sender": { "type": "string", "enum": ["user", "admin"] },
+        "message": { "type": "string" },
+        "status": { "type": "string", "enum": ["unread", "read", "resolved"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "sender", "message", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "User" },
+      "description": "User account documents keyed by unique user ID"
+    },
+    "/userPackages/{packageId}": {
+      "schema": { "$ref": "UserPackage" },
+      "description": "Package purchase and activation requests"
+    },
+    "/attendance/{attendanceId}": {
+      "schema": { "$ref": "Attendance" },
+      "description": "Daily check-in and checkout records"
+    },
+    "/wallets/{userId}": {
+      "schema": { "$ref": "Wallet" },
+      "description": "Real-time user balances and earning sums"
+    },
+    "/walletTransactions/{txId}": {
+      "schema": { "$ref": "WalletTransaction" },
+      "description": "Immutable ledger transaction receipts"
+    },
+    "/withdrawals/{withdrawalId}": {
+      "schema": { "$ref": "WithdrawalRecord" },
+      "description": "Instant withdrawal and payout disbursement queue"
+    },
+    "/supportMessages/{messageId}": {
+      "schema": { "$ref": "SupportMessage" },
+      "description": "Live customer support chat threads"
+    }
+  }
+}

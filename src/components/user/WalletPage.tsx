@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../../api/client';
-import { Wallet, WithdrawalRecord, WalletTransaction } from '../../types';
+import { Wallet, WithdrawalRecord, WalletTransaction, WalletAmountMemoriesResponse } from '../../types';
 import { useAuth } from '../../context/AuthContext';
 import { WithdrawalModal } from './WithdrawalModal';
 import {
@@ -12,6 +12,16 @@ import {
   XCircle,
   AlertCircle,
   RefreshCw,
+  Database,
+  HardDrive,
+  ShieldCheck,
+  Brain,
+  Download,
+  Sparkles,
+  TrendingUp,
+  Calendar,
+  Users,
+  Coins,
 } from 'lucide-react';
 
 export const WalletPage: React.FC = () => {
@@ -19,22 +29,49 @@ export const WalletPage: React.FC = () => {
   const [wallet, setWallet] = useState<Wallet | null>(authWallet);
   const [withdrawals, setWithdrawals] = useState<WithdrawalRecord[]>([]);
   const [transactions, setTransactions] = useState<WalletTransaction[]>([]);
+  const [memoriesData, setMemoriesData] = useState<WalletAmountMemoriesResponse | null>(null);
   const [isWithdrawOpen, setIsWithdrawOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'withdrawals' | 'transactions'>('withdrawals');
+  const [activeTab, setActiveTab] = useState<'withdrawals' | 'transactions' | 'memories'>('withdrawals');
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchWalletData = async () => {
     setIsLoading(true);
     try {
-      const summary = await api.getWalletSummary();
+      const [summary, memories] = await Promise.all([
+        api.getWalletSummary(),
+        api.getWalletAmountMemories().catch(() => null),
+      ]);
       setWallet(summary.wallet);
       setWithdrawals(summary.recentWithdrawals);
       setTransactions(summary.recentTransactions);
+      if (memories) {
+        setMemoriesData(memories);
+      }
     } catch (e) {
       console.error('Failed to load wallet data:', e);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleExportMemories = () => {
+    const exportPayload = {
+      appName: 'MS Official',
+      exportedAt: new Date().toISOString(),
+      storageEngine: 'Cloud Firestore & Atomic JSON DB Engine',
+      firestoreDatabaseId: 'ai-studio-msofficial-e3ea03c5-52b6-4d29-9e2a-ae174f7e3c72',
+      walletSummary: wallet,
+      amountMemories: memoriesData?.walletAmountMemories,
+      transactions: transactions,
+      withdrawals: withdrawals,
+    };
+    const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(exportPayload, null, 2));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute('href', dataStr);
+    downloadAnchor.setAttribute('download', `ms-official-wallet-amount-memories-${new Date().toISOString().split('T')[0]}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
   };
 
   useEffect(() => {
@@ -120,7 +157,7 @@ export const WalletPage: React.FC = () => {
       {/* Transaction & Withdrawal History */}
       <div className="bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl">
         <div className="flex items-center justify-between mb-4">
-          <div className="flex bg-slate-950 p-1 rounded-xl border border-slate-800">
+          <div className="flex bg-slate-950 p-1 rounded-xl border border-slate-800 flex-wrap gap-1">
             <button
               onClick={() => setActiveTab('withdrawals')}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
@@ -137,11 +174,22 @@ export const WalletPage: React.FC = () => {
             >
               Ledger Logs
             </button>
+            <button
+              onClick={() => setActiveTab('memories')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                activeTab === 'memories'
+                  ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 text-white shadow-md ring-1 ring-cyan-400/50'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Brain className="w-3.5 h-3.5 text-cyan-300" />
+              <span>Amount Memories</span>
+            </button>
           </div>
-          <span className="text-[11px] text-slate-500 font-mono">Real-time DB records</span>
+          <span className="text-[11px] text-slate-500 font-mono hidden sm:inline">Real-time DB records</span>
         </div>
 
-        {activeTab === 'withdrawals' ? (
+        {activeTab === 'withdrawals' && (
           <div>
             {withdrawals.length === 0 ? (
               <div className="text-center py-10 bg-slate-950/60 rounded-2xl border border-slate-800/80">
@@ -217,7 +265,9 @@ export const WalletPage: React.FC = () => {
               </div>
             )}
           </div>
-        ) : (
+        )}
+
+        {activeTab === 'transactions' && (
           <div>
             {transactions.length === 0 ? (
               <div className="text-center py-10 bg-slate-950/60 rounded-2xl border border-slate-800/80">
@@ -251,6 +301,209 @@ export const WalletPage: React.FC = () => {
             )}
           </div>
         )}
+
+        {/* TAB 3: WALLET AMOUNT MEMORIES & STORAGE */}
+        {activeTab === 'memories' && (
+          <div className="space-y-5 animate-page-enter">
+            {/* Storage Architecture Live Status Banner - Hidden as requested */}
+            <div className="hidden" aria-hidden="true">
+              <div className="flex items-start gap-3">
+                <div className="p-2.5 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0 mt-0.5 shadow-sm">
+                  <Database className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-white">Live Storage & Memories Active</span>
+                    <span className="inline-flex items-center gap-1 text-[9px] font-mono text-emerald-300 bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      SYNCHRONIZED
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-slate-400 mt-0.5 font-mono">
+                    Firestore DB: <strong className="text-cyan-300">{memoriesData?.storageStatus.firestoreDatabaseId || 'ai-studio-msofficial-e3ea03c5-52b6-4d29-9e2a-ae174f7e3c72'}</strong>
+                  </p>
+                  <p className="text-[10px] text-slate-500 mt-0.5">
+                    Total Archived Memories: <strong>{memoriesData?.storageStatus.totalRecordsArchived ?? (transactions.length + withdrawals.length)} records</strong>
+                  </p>
+                </div>
+              </div>
+
+              <button
+                onClick={handleExportMemories}
+                className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all active:scale-[0.97] shrink-0"
+                title="Download JSON copy of all wallet amount memories"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Export Memories</span>
+              </button>
+            </div>
+
+            {/* 4-Stat Amount Memories Breakdown */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <div className="p-3.5 rounded-2xl bg-slate-950 border border-emerald-500/30">
+                <div className="flex items-center gap-1.5 text-emerald-400 text-[10px] font-bold uppercase tracking-wider mb-1">
+                  <TrendingUp className="w-3 h-3" />
+                  <span>Total Earned</span>
+                </div>
+                <div className="text-lg sm:text-xl font-black text-white font-mono">
+                  Rs. {(memoriesData?.walletAmountMemories.totalEarnedLifetime ?? (wallet?.totalEarned || 0)).toLocaleString()}
+                </div>
+                <span className="text-[9px] text-slate-400">Cumulative memory</span>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-slate-950 border border-cyan-500/30">
+                <div className="flex items-center gap-1.5 text-cyan-400 text-[10px] font-bold uppercase tracking-wider mb-1">
+                  <Calendar className="w-3 h-3" />
+                  <span>Attendance</span>
+                </div>
+                <div className="text-lg sm:text-xl font-black text-cyan-300 font-mono">
+                  Rs. {(memoriesData?.walletAmountMemories.attendanceRewards.totalAmount ?? 0).toLocaleString()}
+                </div>
+                <span className="text-[9px] text-slate-400">
+                  {memoriesData?.walletAmountMemories.attendanceRewards.streakDays ?? 0} days (+Rs. 5 each)
+                </span>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-slate-950 border border-amber-500/30">
+                <div className="flex items-center gap-1.5 text-amber-400 text-[10px] font-bold uppercase tracking-wider mb-1">
+                  <Users className="w-3 h-3" />
+                  <span>Referrals</span>
+                </div>
+                <div className="text-lg sm:text-xl font-black text-amber-300 font-mono">
+                  Rs. {(memoriesData?.walletAmountMemories.referralCommissions.totalAmount ?? 0).toLocaleString()}
+                </div>
+                <span className="text-[9px] text-slate-400">
+                  {memoriesData?.walletAmountMemories.referralCommissions.payoutsCount ?? 0} bonuses gained
+                </span>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-slate-950 border border-indigo-500/30">
+                <div className="flex items-center gap-1.5 text-indigo-400 text-[10px] font-bold uppercase tracking-wider mb-1">
+                  <Coins className="w-3 h-3" />
+                  <span>Disbursed</span>
+                </div>
+                <div className="text-lg sm:text-xl font-black text-indigo-300 font-mono">
+                  Rs. {(memoriesData?.walletAmountMemories.withdrawals.totalDisbursed ?? 0).toLocaleString()}
+                </div>
+                <span className="text-[9px] text-slate-400">
+                  {memoriesData?.walletAmountMemories.withdrawals.successfulCount ?? 0} paid withdrawals
+                </span>
+              </div>
+            </div>
+
+            {/* Amount Memories Timeline Feed */}
+            <div>
+              <div className="flex items-center justify-between mb-2.5">
+                <span className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Chronological Amount Memories Timeline</span>
+                </span>
+                <button
+                  onClick={handleExportMemories}
+                  className="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-white font-mono text-[10px] flex items-center gap-1.5 transition-colors cursor-pointer"
+                  title="Export Memories JSON"
+                >
+                  <Download className="w-3 h-3 text-cyan-400" />
+                  <span>Export</span>
+                </button>
+              </div>
+
+              {(!memoriesData?.walletAmountMemories.memoriesTimeline || memoriesData.walletAmountMemories.memoriesTimeline.length === 0) ? (
+                <div className="text-center py-8 bg-slate-950/60 rounded-2xl border border-slate-800/80">
+                  <Brain className="w-7 h-7 text-slate-600 mx-auto mb-1.5" />
+                  <p className="text-xs text-slate-400">No amount memories recorded yet.</p>
+                  <span className="text-[10px] text-slate-500">Check in today (+Rs. 5) or invite friends to build your wallet memory trail!</span>
+                </div>
+              ) : (
+                <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
+                  {memoriesData.walletAmountMemories.memoriesTimeline.map((item) => {
+                    const categoryStyles = {
+                      attendance: 'border-l-4 border-l-cyan-400 bg-slate-950/80',
+                      referral: 'border-l-4 border-l-amber-400 bg-slate-950/80',
+                      withdrawal: 'border-l-4 border-l-rose-400 bg-slate-950/80',
+                      ledger: 'border-l-4 border-l-emerald-400 bg-slate-950/80',
+                    }[item.category] || 'border-l-4 border-l-slate-600 bg-slate-950/80';
+
+                    return (
+                      <div
+                        key={item.id}
+                        className={`p-3 rounded-xl border border-slate-800/80 flex items-center justify-between text-xs transition-all hover:bg-slate-950 ${categoryStyles}`}
+                      >
+                        <div>
+                          <div className="font-semibold text-slate-200 flex items-center gap-2">
+                            <span>{item.reason}</span>
+                            <span className="text-[9px] uppercase px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">
+                              {item.category}
+                            </span>
+                          </div>
+                          <div className="text-[10px] text-slate-500 font-mono mt-0.5">
+                            {new Date(item.timestamp).toLocaleString()} · ID: {item.id.slice(0, 8)}...
+                          </div>
+                        </div>
+                        <div
+                          className={`font-mono font-bold text-xs sm:text-sm shrink-0 ml-3 ${
+                            item.type === 'credit' ? 'text-emerald-400' : 'text-rose-400'
+                          }`}
+                        >
+                          {item.type === 'credit' ? '+' : '-'} Rs. {item.amount.toLocaleString()}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* History Memories & Storage Overview Card */}
+      <div className="glass-card-hover bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl relative overflow-hidden">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="p-2.5 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+            <Database className="w-5 h-5" />
+          </div>
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-400 font-mono">
+              Data Architecture
+            </span>
+            <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
+              History Memories & Storage Security
+            </h3>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="p-3.5 bg-slate-950/70 rounded-2xl border border-slate-800/80 space-y-1.5">
+            <div className="flex items-center gap-2 text-emerald-400 font-semibold text-xs">
+              <History className="w-4 h-4 shrink-0" />
+              <span>Immutable Ledger</span>
+            </div>
+            <p className="text-[11px] text-slate-400 leading-relaxed">
+              Every attendance reward (+Rs. 5), referral bonus, and withdrawal is assigned a permanent UUID and memorized in the database.
+            </p>
+          </div>
+
+          <div className="p-3.5 bg-slate-950/70 rounded-2xl border border-slate-800/80 space-y-1.5">
+            <div className="flex items-center gap-2 text-cyan-400 font-semibold text-xs">
+              <HardDrive className="w-4 h-4 shrink-0" />
+              <span>Storage System</span>
+            </div>
+            <p className="text-[11px] text-slate-400 leading-relaxed">
+              Persistent JSON database on server disk with automated backup & structured file directories for deposit screenshots and tasks.
+            </p>
+          </div>
+
+          <div className="p-3.5 bg-slate-950/70 rounded-2xl border border-slate-800/80 space-y-1.5">
+            <div className="flex items-center gap-2 text-amber-400 font-semibold text-xs">
+              <ShieldCheck className="w-4 h-4 shrink-0" />
+              <span>Session Memory</span>
+            </div>
+            <p className="text-[11px] text-slate-400 leading-relaxed">
+              Encrypted JWT tokens preserve your login and balances securely across browser tabs and device reboots.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Withdrawal Form Modal */}

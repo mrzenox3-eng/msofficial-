@@ -16,7 +16,20 @@ import {
   AdminUserListItem,
   AdminAuditLog,
   UserFullDossier,
+  WalletAmountMemoriesResponse,
 } from '../types';
+
+const getApiBase = (): string => {
+  const envUrl = (import.meta as any).env?.VITE_API_URL;
+  if (envUrl) {
+    return envUrl.replace(/\/$/, '');
+  }
+  // Fallback to live cloud backend when hosted on GitHub Pages
+  if (typeof window !== 'undefined' && window.location.hostname.endsWith('github.io')) {
+    return 'https://ais-dev-w3jyztby6skrlvoibagcqo-813832143668.asia-southeast1.run.app/api';
+  }
+  return '/api';
+};
 
 class ApiClient {
   private getUserToken(): string | null {
@@ -38,7 +51,9 @@ class ApiClient {
       headers['Authorization'] = `Bearer ${token}`;
     }
 
-    const response = await fetch(`/api${endpoint}`, {
+    const apiBase = getApiBase();
+    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    const response = await fetch(`${apiBase}${cleanEndpoint}`, {
       ...options,
       headers,
     });
@@ -217,6 +232,10 @@ class ApiClient {
       method: 'POST',
       body: JSON.stringify(params),
     });
+  }
+
+  async getWalletAmountMemories() {
+    return this.request<WalletAmountMemoriesResponse>('/wallet/amount-memories');
   }
 
   // --- SUPPORT MESSAGES ---

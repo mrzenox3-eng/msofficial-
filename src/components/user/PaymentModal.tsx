@@ -166,8 +166,8 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ packageOffer, onClos
     selectedMethod === 'JazzCash' ? paymentSettings?.jazzCash : paymentSettings?.easypaisa;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md overflow-y-auto">
-      <div className="w-full max-w-lg bg-slate-900 border-2 border-emerald-500/40 rounded-3xl p-5 sm:p-7 shadow-2xl shadow-emerald-950/60 relative my-6 text-slate-100">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
+      <div className="w-full max-w-lg bg-slate-900 border-2 border-emerald-500/40 rounded-3xl p-5 sm:p-7 shadow-2xl shadow-emerald-950/60 relative my-6 text-slate-100 animate-modal-pop">
         {/* Close Button */}
         <button
           onClick={onClose}
